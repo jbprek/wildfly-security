@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <!--
+        This pom builds the EAR artifact and includes the ejb and web modules.
+    -->
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.bagab.wildfly.security.multi</groupId>
+        <artifactId>multi-ear-project</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>multi-ear-app</artifactId>
+    <packaging>ear</packaging>
+
+    <name>multi-ear-app</name>
+    <description>WildFly EAR Template - EAR  App</description>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <distribution>repo</distribution>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+        </license>
+    </licenses>
+
+    <dependencies>
+        <!-- Dependencies on the ejb and web modules so that they can be found by the ear plugin -->
+        <dependency>
+            <groupId>org.bagab.wildfly.security.multi</groupId>
+            <artifactId>multi-admin-web-module</artifactId>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>org.bagab.wildfly.security.multi</groupId>
+            <artifactId>multi-admin-ejb-module</artifactId>
+            <type>ejb</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+      <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <!-- Ear plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>${version.ear.plugin}</version>
+                <!-- configuring the ear plugin -->
+                <configuration>
+                    <!-- Tell Maven we are using Java EE 7 -->
+                    <version>6</version>
+                    <!-- Use Java EE ear libraries as needed. Java EE ear libraries
+                        are in easy way to package any libraries needed in the ear, and automatically
+                        have any modules (EJB-JARs and WARs) use them -->
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <modules>
+                    <!-- Default context root of the web app is /wildfly-ejb-in-ear-web.
+                        If a custom context root is needed, uncomment the following snippet to
+                        register our War as a web module and set the contextRoot property -->
+                        <webModule>
+                            <groupId>org.bagab.wildfly.security.multi</groupId>
+                            <artifactId>multi-admin-web-module</artifactId>
+                            <contextRoot>/template-ear-project</contextRoot>
+                        </webModule>
+                    </modules>
+                    <fileNameMapping>no-version</fileNameMapping>
+                </configuration>
+            </plugin>
+            <!-- WildFly plugin to deploy ear -->
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>${version.wildfly.maven.plugin}</version>
+                <configuration>
+                    <filename>${project.artifactId}.ear</filename>
+                    <skip>false</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

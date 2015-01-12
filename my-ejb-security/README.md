@@ -90,7 +90,7 @@ _NOTE: The following build command assumes you have configured your Maven user s
 Access the application
 ---------------------
 
-The application will be running at the following URL <http://localhost:8080/wildfly-ejb-security/>.
+The application will be running at the following URL <http://localhost:8080/my-ejb-security/>.
 
 When you access the application, you are presented with a browser login challenge.
 

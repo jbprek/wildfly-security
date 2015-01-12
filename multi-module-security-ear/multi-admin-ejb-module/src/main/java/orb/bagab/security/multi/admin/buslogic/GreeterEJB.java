@@ -1,6 +1,6 @@
 /*
  * JBoss, Home of Professional Open Source
- * Copyright 2014, Red Hat, Inc. and/or its affiliates, and individual
+ * Copyright 2013, Red Hat, Inc. and/or its affiliates, and individual
  * contributors by the @authors tag. See the copyright.txt in the
  * distribution for a full listing of individual contributors.
  *
@@ -14,21 +14,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package orb.bagab.security.multi.admin.buslogic;
 
-package org.jboss.as.quickstarts.ejb_security;
+import javax.ejb.Stateful;
 
 /**
- * The remote interface for the secured EJB.
+ * A simple Hello World EJB. The EJB does not use an interface.
  *
- * @author <a href="mailto:darran.lofthouse@jboss.com">Darran Lofthouse</a>
+ * @author paul.robinson@redhat.com, 2011-12-21
  */
-public interface SecuredRemote {
-
+@Stateful
+public class GreeterEJB {
     /**
-     * Get the name of the {@link Principal} associated with the request.
+     * This method takes a name and returns a personalised greeting.
      *
-     * @return The name of the {@link Principal} associated with the request.
+     * @param name
+     *            the name of the person to be greeted
+     * @return the personalised greeting.
      */
-    public String getSecurityInfo();
-
+    public String sayHello(String name) {
+        return "Hello " + name;
+    }
 }

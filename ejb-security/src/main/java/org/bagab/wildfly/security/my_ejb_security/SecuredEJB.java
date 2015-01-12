@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.jboss.as.quickstarts.ejb_security;
+package org.bagab.wildfly.security.my_ejb_security;
 
 import java.security.Principal;
 

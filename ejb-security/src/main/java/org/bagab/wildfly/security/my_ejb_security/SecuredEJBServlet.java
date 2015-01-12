@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.as.quickstarts.ejb_security;
+package org.bagab.wildfly.security.my_ejb_security;
 
 import java.io.IOException;
 import java.io.PrintWriter;

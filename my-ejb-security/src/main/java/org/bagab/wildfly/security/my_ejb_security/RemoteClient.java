@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.jboss.as.quickstarts.ejb_security;
+package org.bagab.wildfly.security.my_ejb_security;
 
 import java.util.Hashtable;
 
@@ -49,7 +49,7 @@ public class RemoteClient {
         jndiProperties.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
         final Context context = new InitialContext(jndiProperties);
 
-        return (SecuredRemote) context.lookup("ejb:/wildfly-ejb-security/SecuredEJB!" + SecuredRemote.class.getName());
+        return (SecuredRemote) context.lookup("ejb:/my-ejb-security/SecuredEJB!" + SecuredRemote.class.getName());
     }
 
 }

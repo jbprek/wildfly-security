@@ -17,6 +17,8 @@
         <module>ejb-security-interceptors</module>
         <module>security-vault-askpass</module>
         <module>servlet-security</module>
+        <module>my-ejb-security</module>
+        <module>multi-module-security-ear</module>
     </modules>
 
     <properties>
